@@ -32,6 +32,7 @@ window.onscroll = () =>{
 
 }
 
+
 document.querySelector('#search-icon').onclick = () =>{
   document.querySelector('#search-form').classList.toggle('active');
 }
@@ -40,6 +41,30 @@ document.querySelector('#close').onclick = () =>{
   document.querySelector('#search-form').classList.remove('active');
 }
 
+function tampilkanNotifikasi(event) {
+  event.preventDefault(); // Menghentikan pengiriman form (jika Anda tidak ingin halaman terrefresh)
+
+  // Dapatkan nilai dari elemen-elemen input dalam form
+  var nama = document.getElementById('input-nama').value;
+  var nomorHP = document.getElementById('input-nomor').value;
+  var jumlah = document.getElementById('input-jumlah').value;
+  var waktuTanggal = document.getElementById('input-tanggal').value;
+  var alamat = document.getElementById('input-alamat').value;
+  var pesan = document.getElementById('input-pesan').value;
+
+  var total_harga = jumlah * 99000;
+  var total_harga_formatted = total_harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+
+  // Buat pesan notifikasi dengan nilai-nilai dari form
+  var notifikasiPesan = `"Pesanan Anda berhasil diterima!\n\nNama: ${nama}\nNomor Handphone: ${nomorHP}\nJumlah: ${jumlah}\nWaktu dan Tanggal: ${waktuTanggal}\nAlamat: ${alamat}\nPesan: ${pesan}\n\nTotal Harga: ${total_harga_formatted}`;
+
+  // Tampilkan notifikasi
+  alert(notifikasiPesan);
+}
+
+// Temukan form dengan ID "myForm" dan tambahkan event listener untuk menghandle submit
+var form = document.getElementById("myForm");
+form.addEventListener("submit", tampilkanNotifikasi);
 var swiper = new Swiper(".home-slider", {
   spaceBetween: 150,
   centeredSlides: true,
